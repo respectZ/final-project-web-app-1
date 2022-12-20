@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{template "general/header"}}
+</head>
+
+<body>
+    <div class="flex h-screen w-screen bg-gradient-to-br from-zinc-600 to-slate-900 items-center justify-center">
+        <div class="flex h-fit w-96 lg:w-2/5 xl:w-1/5 bg-zinc-800 rounded-lg flex-col shadow-lg">
+            <div class="flex bg-gradient-to-r from-red-600 to-blue-600 rounded-t-lg p-3 shadow-lg text-white">
+                <h1 class="text-2xl antialiased">Add New Category</h1>
+            </div>
+            <div class="flex flex-1 bg-gradient-to-r from-zinc-800 to-zinc-900 rounded-b-lg p-6 shadow-lg text-white">
+                <form action="/category/create" method="post" class="w-full">
+                    <div class="flex flex-col h-full">
+                        <label for="type">
+                            <h2 class="text-xl">Title</h2>
+                        </label>
+                        <div class="h-2"></div>
+                        <input type="text" name="type" id="type" placeholder="Maria Nearl"
+                            class="bg-transparent ring-blue-600 focus:outline-none focus:ring-1 focus:ring-red-600 ring-1 focus:border-none rounded-md h-8 p-3">
+
+                        <div class="h-8"></div>
+                        <div class="flex flex-row">
+                            <div class="flex flex-1 justify-start">
+                                <button type="submit" class="bg-red-700 hover:bg-red-900 py-1.5 px-4 rounded-lg">Add Category</button>
+                            </div>
+                            <div class="flex flex-1 justify-end">
+                                <a href="/dashboard">
+                                    <button type="button"
+                                        class="bg-blue-700 hover:bg-blue-900 py-1.5 px-4 rounded-lg">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

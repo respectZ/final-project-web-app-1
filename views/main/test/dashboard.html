@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <title>Kanban App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                container: {
+                    center: true,
+                    padding: '2rem',
+                    width: '100%',
+                },
+                table: {},
+            },
+            variants: {
+                extend: {
+                    backgroundColor: ['even'],
+                },
+            },
+        };
+    </script>
+    <style>
+        .group:hover .group-hover\:flex {
+            display: flex !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex flex-col w-screen h-screen overflow-auto  bg-gradient-to-tr from-zinc-600 to-slate-600 text-white">
+        <div class="flex items-center flex-shrink-0 w-full h-16 px-10 bg-zinc-900 bg-opacity-75">
+            <svg class="w-8 h-8 text-indigo-600 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            <div class="flex items-center justify-center w-8 h-8 ml-auto">
+                <a href="/logout">
+                    <button class="flex items-center justify-center w-8 h-8 ml-auto cursor-pointer font-bold">
+                        Logout
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="px-10 mt-6">
+            <h1 class="text-xl font-bold">Welcome <span class="text-blue-400">{{.user.fullname}}</span> !</h1>
+            <h1 class="text-2xl font-bold">Kanban App</h1>
+        </div>
+        <div class="px-8 mt-10 flex flex-col lg:flex-row">
+            <div
+                class="h-fit flex flex-col flex-1 items-center bg-gradient-to-b from-orange-400 to-transparent pb-12 rounded-md mx-4">
+                <div class="w-full h-fit flex flex-row flex-1 items-center pb-8 rounded-md mx-4">
+                    <h2 class="flex-1 text-xl font-semibold px-4 text-black">To Do</h2>
+                    <button class="text-3xl">+</button>
+                    <div class="w-2"></div>
+                    <button class="text-3xl">x</button>
+                    <div class="w-4"></div>
+                </div>
+                <!-- content -->
+                <div class="flex flex-col items-center">
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex flex-row items-center bg-red-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold flex-1"> Yowasa</h1>
+                            <a href="/task/update">
+                                <button type="button" class="px-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg>
+                                </button>
+                            </a>
+
+                            <a href="/task/delete">
+                                <button type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                    </svg>
+                                </button>
+                            </a>
+
+
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-blue-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="h-fit flex flex-col flex-1 items-center bg-gradient-to-b from-yellow-400 to-transparent pb-12 rounded-md mx-4">
+                <div class="w-full h-fit flex flex-row flex-1 items-center pb-8 rounded-md mx-4">
+                    <h2 class="flex-1 text-xl font-semibold px-4 text-black">In Progress</h2>
+                    <button class="text-3xl">+</button>
+                    <div class="w-2"></div>
+                    <button class="text-3xl">x</button>
+                    <div class="w-4"></div>
+                </div>
+                <!-- content -->
+                <div class="flex flex-col items-center">
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-red-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-blue-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="h-fit flex flex-col flex-1 items-center bg-gradient-to-b from-green-400 to-transparent pb-12 rounded-md mx-4">
+                <div class="w-full h-fit flex flex-row flex-1 items-center pb-8 rounded-md mx-4">
+                    <h2 class="flex-1 text-xl font-semibold px-4 text-black">Completed</h2>
+                    <button class="text-3xl">+</button>
+                    <div class="w-2"></div>
+                    <button class="text-3xl">x</button>
+                    <div class="w-4"></div>
+                </div>
+                <!-- content -->
+                <div class="flex flex-col items-center">
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-red-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-blue-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="h-fit flex flex-col flex-1 items-center bg-gradient-to-b from-blue-400 to-transparent pb-12 rounded-md mx-4">
+                <div class="w-full h-fit flex flex-row flex-1 items-center pb-8 rounded-md mx-4">
+                    <h2 class="flex-1 text-xl font-semibold px-4 text-black">Backlog</h2>
+                    <button class="text-3xl">+</button>
+                    <div class="w-2"></div>
+                    <button class="text-3xl">x</button>
+                    <div class="w-4"></div>
+                </div>
+                <!-- content -->
+                <div class="flex flex-col items-center">
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-red-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-98 w-4/5 shadow-lg mb-8">
+                        <div class="flex bg-blue-500 rounded-t-md text-white p-3">
+                            <h1 class="text-2xl font-bold"> Yowasa</h1>
+                        </div>
+                        <div class="flex bg-zinc-100 rounded-b-md text-black p-4">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo consectetur nobis fugiat
+                                debitis sed, dolore reiciendis officia veniam voluptate, ex assumenda eos autem quod
+                                praesentium est deleniti nostrum. Vel, error?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: answer here -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <title>Kanban App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                container: {
+                    center: true,
+                    padding: '2rem',
+                    width: '100%',
+                },
+                table: {},
+            },
+            variants: {
+                extend: {
+                    backgroundColor: ['even'],
+                },
+            },
+        };
+    </script>
+    <style>
+        .group:hover .group-hover\:flex {
+            display: flex !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex h-screen w-screen bg-gradient-to-br from-zinc-600 to-slate-900 items-center justify-center">
+        <div class="flex h-fit w-96 lg:w-2/5 xl:w-1/5 bg-zinc-800 rounded-lg flex-col shadow-lg">
+            <div class="flex bg-gradient-to-r from-red-600 to-blue-600 rounded-t-lg p-3 shadow-lg text-white">
+                <h1 class="text-2xl antialiased">Add New Task</h1>
+            </div>
+            <div class="flex flex-1 bg-gradient-to-r from-zinc-800 to-zinc-900 rounded-b-lg p-6 shadow-lg text-white">
+                <form action="/task/create" method="post" class="w-full">
+                    <div class="flex flex-col h-full">
+                        <label for="title">
+                            <h2 class="text-xl">Title</h2>
+                        </label>
+                        <div class="h-2"></div>
+                        <input type="text" name="title" id="title" placeholder="Maria Nearl"
+                            class="bg-transparent ring-blue-600 focus:outline-none focus:ring-1 focus:ring-red-600 ring-1 focus:border-none rounded-md h-8 p-3">
+
+                        <label for="description">
+                            <h2 class="text-xl">Description</h2>
+                        </label>
+                        <div class="h-2"></div>
+                        <input type="text" name="description" id="description"
+                            placeholder="Maria Nearl (MN) is the seventh major event and the sixth Side Story in Arknights."
+                            class="bg-transparent ring-blue-600 focus:outline-none focus:ring-1 focus:ring-red-600 ring-1 focus:border-none rounded-md h-8 p-3">
+
+                        <div class="h-8"></div>
+                        <div class="flex flex-row">
+                            <div class="flex flex-1 justify-start">
+                                <button type="submit" class="bg-red-700 hover:bg-red-900 py-1.5 px-4 rounded-lg">Add
+                                    Category</button>
+                            </div>
+                            <div class="flex flex-1 justify-end">
+                                <a href="/dashboard">
+                                    <button class="bg-blue-700 hover:bg-blue-900 py-1.5 px-4 rounded-lg">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
